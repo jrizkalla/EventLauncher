@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>some-key</key>
+	<string>0</string>
 	<key>switch-to-ac-power</key>
 	<string>/Users/johnrizkalla/environment/bin/play &quot;|&quot;</string>
 	<key>switch-to-battery-power</key>

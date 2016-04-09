@@ -14,30 +14,28 @@
 @synthesize currentPowerSrc = _currentPowerSrc;
 
 -(id) init {
-    // TODO throw exception
+    [NSException raise:@"Unsuported constructor" format:@"init is not supported. Please use initWithContentsOfFile"];
+    return NULL;
 }
 
 -(id) initWithContentsOfFile:(NSString *)path {
     if (self = [super init]){
-        self.counter = 0;
-        
         
         // Validate plistDict (all values are either strings or arrays of strings)
         NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile: path];
         for (id key in [plistDict allKeys]){
             id obj = [plistDict objectForKey: key];
-            NSLog(@"Type: %@", [obj className]);
             if ([obj isKindOfClass: [NSArray class]]){
                 // make sure all the items are strings
                 for (id item in (NSArray *)obj){
-                    if (![item isMemberOfClass: [NSString class]]){
-                        // TODO handler error
+                    if (![item isKindOfClass: [NSString class]]){
+                        [NSException raise: @"Invalid configuration file format" format: @"Values in arrays must all be strings"];
                     }
                 }
             } else {
                 // make sure it's a string
                 if (![obj isKindOfClass: [NSString class]]){
-                    // TODO handle error
+                    [NSException raise: @"Invalid configuration file format" format:@"Values must be arrays or strings"];
                 }
                 // Replace it with an array
                 NSArray *arr = @[obj];
@@ -74,7 +72,7 @@
     if ([currentPowerSrc isEqualToString: @"Battery Power"] || [currentPowerSrc isEqualToString: @"AC Power"]){
         _currentPowerSrc = currentPowerSrc;
     } else {
-        // TODO raise exception
+        [NSException raise: NSInvalidArgumentException format:@"currentPowerSrc must be \"Battery Power\" or \"AC Power\""];
     }
 }
 

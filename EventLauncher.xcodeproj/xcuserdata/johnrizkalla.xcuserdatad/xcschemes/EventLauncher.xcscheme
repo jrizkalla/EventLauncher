@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/johnrizkalla/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/PowerScript/EventLauncher/EventLauncher/test.plist"
+            argument = "/Users/johnrizkalla/EventLauncher/EventLauncher/test.plist"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

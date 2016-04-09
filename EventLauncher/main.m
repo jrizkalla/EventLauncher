@@ -28,9 +28,15 @@ int main(int argc, const char * argv[]) {
         
         NSString *fileName = [[NSString alloc] initWithCString: argv[1] encoding: NSUTF8StringEncoding];
         
-        EventContext *context = [[EventContext alloc] initWithContentsOfFile:fileName];
-//        context.scripts = [[NSDictionary alloc] initWithObjects: @[@[@"/Users/johnrizkalla/environment/bin/play \"|\""], @[@"/Users/johnrizkalla/environment/bin/play \"|\""]]
-//                                                        forKeys:@[@"switch-to-battery-power", @"switch-to-ac-power"]];
+        EventContext *context;
+        @try{
+            context = [[EventContext alloc] initWithContentsOfFile:fileName];
+        } @catch (NSException *e){
+            fprintf(stderr, "Unable to read configuration file\n");
+            fprintf(stderr, "Reason: %s\n\n", [e.reason UTF8String]);
+            print_usage(stderr, argv[0]);
+            return 3;
+        }
         
         CFRunLoopSourceRef run_loop_ref = IOPSNotificationCreateRunLoopSource(&power_info_change_callback, (__bridge void *)(context));
         assert(run_loop_ref);
