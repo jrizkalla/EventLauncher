@@ -1,0 +1,15 @@
+
+# general files
+*.swp
+*.swo
+.DS_Store
+
+
+# c files
+*.d
+*.elf
+*.o
+.out
+*.map
+
+DerivedData
